@@ -1,4 +1,4 @@
-## Project 1
+## Project 2
 _Yaremi Dominguez_  
 _October 7, 2026_
 
