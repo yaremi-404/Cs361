@@ -1,0 +1,22 @@
+#2open_file(3file_name) ->1 file_pointer
+#read_data(file_pointer) -> data
+#write_data(file_pointer, data)
+#close_file(file_pointer)
+class FileWrapper:
+    def __init__(self, file_name):
+        self.name = file_name
+        self.file_pointer = None
+        self.data = None
+
+    def open(self):
+        self.file_pointer = open_file(self.name)
+
+    def read(self):
+        self.data = read_data(self.file_pointer)
+        return self.data
+
+    def write(self, data):
+        write_data(self.file_pointer, data) #grabs from the previous two functions
+
+    def close(self):
+        close.file(self.file_pointer)
