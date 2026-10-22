@@ -1,0 +1,72 @@
+# You can't modify this code
+class SidewinderJoystick:
+    BUTTON_UP = 2
+    BUTTON_DOWN = 3
+
+    def get_x_axis(self, stick_id): # returns -1.0 to 1.0
+        pass # Pretend this is actual code
+
+    def get_y_axis(self, stick_id): # returns -1.0 to 1.0
+        pass # Pretend this is actual code
+
+    def button(self, button_id):    # Returns BUTTON_UP or BUTTON_DOWN
+        pass # Pretend this is actual code
+
+
+# You can't modify this code
+class XboxGamepad:
+    def get_x_axis(self, stick_id): # returns -128 to 127
+        pass # Pretend this is actual code
+
+    def get_y_axis(self, stick_id): # returns -128 to 127
+        pass # Pretend this is actual code
+
+    def button_status(self, button_id):  # float from 0.0 (up) to 1.0 (down)
+        pass # Pretend this is actual code
+
+#Desired Interface
+class Interface:
+    def get_x_axis(self, stick_id): 
+            pass 
+    
+    def get_y_axis(self, stick_id): 
+            pass
+    
+    def button_status(self, button_id): 
+         pass
+
+
+#wrapped Joystick
+class WrappedSidewinderJoystick(Interface):
+    def __init__(self):
+         self.name = SidewinderJoystick()
+
+
+#Wrapped Xbox
+class WrappedXbox(Interface):
+    def __init__(self):
+         self.name = XboxGamepad()
+
+
+#player
+class Player:
+    def __init__(self, sidewinder):
+        self.x = 0
+        self.y = 0
+        self.sidewinder = sidewinder
+
+    def update():  # called every game frame
+        self.x += sidewinder.get_x_axis(1)
+        self.y += sidewinder.get_y_axis(1)
+
+        if sidewinder.button(4) == SidewinderJoystick.BUTTON_DOWN:
+            self.fire_lasers()
+
+        self.update_graphics()
+
+    # ...
+
+sidewinder = SidewinderJoystick()
+p = Player(sidewinder)
+
+# ... Game code continues ...
