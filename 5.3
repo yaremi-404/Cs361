@@ -1,0 +1,39 @@
+class Player:
+    def __init__(self, name):
+        self.name = name
+        self.hp = 10
+        self.str = 9  # stats
+        self.dex = 12
+        self.con = 8
+        self.int = 18
+        self.wis = 10
+        self.cha = 2
+
+class armor:
+    def __init__(self,name, ac):
+        self.armor = name
+        self.ac=ac
+        self.armor = [
+            {
+                "name": "iron helmet",
+                "ac": 8
+            },
+            {
+                "name": "chain mail",
+                "ac": 16 # armor class
+            }
+        ]
+class weapons:
+    def __init__(self,name, weapon):
+        self.name = name
+        self.weapon = weapon [ "short sword", "1d6" ]  # name, damage
+
+class Damage:
+    def compute_damage(base):
+        # Pretend this is some complex thing with AC, armor, hp
+        pass
+
+    # And more functions here to handle stats, weapons, and armor
+
+
+p = Player("Alfredo")
