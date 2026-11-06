@@ -73,5 +73,151 @@ flowchart TD
 |**Cart**|users specific cart with bikes they want to rent.
 |**Review**|Before paying,users see this screen to confirm their reservation.
 |**Payment**|This processes user payment.
-|**Receipt Page**|This is the last page a user sees and it has confirmation the payment went through and the successfully created a reservation.
+|**Receipt Page**|This is the last page a user sees and it has confirmation the payment went through and the successfully created a reservation.  
+
+
+**Part 2**   
+_Entity Relationship Diagram_  
+```mermaid
+erDiagram
+erDiagram
+    CUSTOMER||--|{Reservation : Uses
+    Reservation||--|{ Bike: has
+    Employee ||--|{ Reservation : manages
+
+    CUSTOMER {
+        string customerId
+        string name
+        string PhoneNum
+    }
+    Reservation {
+        float payment 
+        date Date
+        string reservationId
+    }
+    Employee {
+        string EmpId
+        string name
+    }
+    Bike {
+        string id
+        string status
+        string Biketype
+    }
+```
+
+
+_Class Diagram_
+```mermaid
+classDiagram
+    Bike <|-- Reservation
+    Reservation <|-- Customer
+    Reservation <|-- Employee
+    Bike : +float price
+    Bike : +String status
+    Bike : +String BikeId
+    Bike : +String availability
+
+    class Reservation{
+      +String ResId
+      +String status
+
+    }
+    class Customer{
+      +String ResId
+      +String name
+    }
+    class Employee{
+    +String EmpId
+    +String Name
+
+    }
+```
+
+
+_Interfaces_  
+1.  
+Purpose:Customer searches for a type of bike
+Requires: bikelist/biketype
+Outcomes: matching bike search shows up
+Guarantees: matching bikes
+function: something like below
+List SearchBike{
+    String bikeType,
+}
+
+2.  
+Purpose:create reservation
+Requires: resid, customerid, bike, paymentid
+Outcomes: a complete reservation
+Guarantees: a specififc reservation for specific customer, andavailable bike
+Code: something like below
+reservation createreservation{
+    Bike bike
+    string customerid
+    string resid
+    string paymentid
+}
+
+3.  
+Purpose: calculate cost of reservation
+Requires: bikes, reslength
+Outcomes: price shown to customer at checkout
+Guarantees: a accurate price per bike and for length of reservation
+Code:
+reservation calculatecost{
+    string bikes
+    int hours
+    int price
+}
+
+4.  
+Purpose:Manager can generate a report
+Requires: Date of report 
+Outcomes: Report of specific day
+Guarantees: accurate bike, and reservation count
+Notes: The report prints out the selected day info
+Code:
+Report DailyReport(day){
+    reservation count
+    payments
+    bike count
+}
+
+5.  
+Purpose:Allows editing of reservation after its been placed
+Requires: resid, bike, price
+Outcomes: employee can add/remove bikes
+Guarantees: up to date reservation
+Code:
+reservation update{
+    string reservationid
+    bike bike
+    int price
+}
+
+6.  
+Purpose:viewers can view info on bikes
+Requires: biketype, 
+Outcomes: accurate information on certain bikes
+Guarantees: information on specific bike
+Code:
+List searchbike{
+    bike bike
+    string Biketype
+}
+
+_Invariants_   
+1. Bike availability is real-time  
+2. reservations have their own unique id per customer
+3. Employees have authorized access  
+4. Every  bike has a bike unique bike id 
+
+_Failure Modes_  
+1. reservation didnt save, no reseravtionid  
+2. Two customers trying to reserve the same bike at the same time
+3. payments dont process  at checkout
+4. unavailable bikes shouldnt be able to be reserved
+
+
 
