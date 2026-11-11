@@ -69,7 +69,7 @@ The system will use a shared backend API to connect the website and kiosk to the
 
 *\_Component Diagram and Description\_*
 
-\`\`\`mermaid
+```mermaid
 flowchart TD
     A[Customer] --> |Goes to| C(Website)
     A[Customer] --> |Goes to| B(Kiosk)
@@ -96,7 +96,7 @@ flowchart TD
     D --> M[Management Dashboard]
     M --> E
     M --> F
-\`\`\`
+```
 
 |Component| Description |
 |---|---|

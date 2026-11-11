@@ -80,7 +80,6 @@ flowchart TD
 _Entity Relationship Diagram_  
 ```mermaid
 erDiagram
-erDiagram
     CUSTOMER||--|{Reservation : Uses
     Reservation||--|{ Bike: has
     Employee ||--|{ Reservation : manages
